@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Easy Learning Center</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="home.css">
+
+<script>
+function scrollToSection(id){
+    document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+</script>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <img src="images/Logo - 1.png" width="90">
+
+    <div>
+        <a onclick="scrollToSection('home')">Home</a>
+        <a onclick="scrollToSection('platform')">Platform</a>
+        <a onclick="scrollToSection('social')">Social</a>
+    </div>
+
+    <div>
+       <a href="login.html">Login</a>
+<button class="register" onclick="window.location.href='register.html'">sign up</button>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="home">
+    <div>
+        <h1>Fun Learning for Kids 🎓</h1>
+        <p>Learn English in a fun and easy way.</p>
+        <button class="btn" onclick="scrollToSection('platform')">Start Now</button>
+    </div>
+</div>
+
+
+<!-- PLATFORM -->
+<div class="section" id="platform">
+    <h2>Platform</h2>
+
+    <a href="#courses" class="card">
+        <img src="https://th.bing.com/th/id/OIP.8jAOorhisb4_-nxn6Y3F_gHaHa">
+        <p>Courses 📚</p>
+    </a>
+
+    <a href="#quiz" class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3405/3405800.png">
+        <p>Quiz ❓</p>
+    </a>
+
+    <a href="https://wordwall.net/en-us/community/games" target="_blank" class="card">
+        <img src="https://i.pinimg.com/736x/7d/05/3b/7d053b45097250f5d76da0621297114e.jpg">
+        <p>Games 🎮</p>
+    </a>
+</div>
+
+<!-- COURSES -->
+<div class="section" id="courses">
+    <h2>📚 Courses</h2>
+    <p>Coming soon...</p>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="quiz">
+    <h2>❓ Quiz</h2>
+
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe63QjQfp0pqltpyb0TI_lQxIzbrUP8RIZYDVYWb87J8c8LVg/viewform?embedded=true"
+    width="100%" height="600"></iframe>
+
+</div>
+
+<!-- SOCIAL -->
+<div class="section" id="social">
+    <h2>Social Media</h2>
+
+    <p>
+        📘 Facebook:
+        <a href="https://facebook.com" target="_blank">
+        International english teaching center
+        </a>
+    </p>
+
+    <p>
+        📸 Instagram:
+        <a href="https://instagram.com" target="_blank">
+        easy.learning.dz.center
+        </a>
+    </p>
+</div>
+
+<!-- JAVASCRIPT (BACKEND CONNECTION) -->
+<script>
+function register(){
+    fetch("http://localhost:3000/register", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        })
+    })
+    .then(res => res.text())
+    .then(data => alert(data))
+    .catch(err => console.log(err));
+}
+
+function login(){
+    fetch("http://localhost:3000/login", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        })
+    })
+    .then(res => res.text())
+    .then(data => alert(data))
+    .catch(err => console.log(err));
+}
+</script>
+
+</body>
+</html>
