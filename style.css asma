@@ -1,0 +1,273 @@
+body{
+    margin:0;
+    font-family:Arial;
+    background:#4979c2;
+}
+
+/* HEADER */
+.header{
+    background:rgb(206, 229, 248);
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+}
+
+/* ⭐ NAV LINKS (FIXED ONLY HERE) */
+.header a{
+    margin:0 10px;
+    text-decoration:none;
+    color:black;
+    cursor:pointer;
+
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:12px;
+    transition:0.3s ease;
+}
+
+/* ✨ HOVER EFFECT (rectangle + color + movement) */
+.header a:hover{
+    background:gold;
+    color:black;
+    transform:translateY(-3px);
+    box-shadow:0 6px 15px rgba(0,0,0,0.25);
+}
+
+/* click effect */
+.header a:active{
+    transform:scale(0.95);
+}
+
+/* HERO */
+.hero{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding:40px;
+}
+
+.hero img{
+    width:300px;
+    border-radius:15px;
+}
+
+/* SECTION */
+.section{
+    background:rgb(237, 237, 237);
+    margin:30px auto;
+    padding:20px;
+    width:90%;
+    max-width:900px;
+    border-radius:10px;
+    text-align:center;
+}
+
+/* CARD */
+.card{
+    background:#1e3a8a;
+    color:white;
+    margin:20px;
+    width:220px;
+    border-radius:20px;
+    display:inline-block;
+    text-decoration:none;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+.card img{
+    width:100%;
+    height:130px;
+    object-fit:cover;
+}
+
+.card p{
+    padding:15px;
+    margin:0;
+    font-size:18px;
+}
+
+.card:hover{
+    transform:scale(1.07);
+}
+
+/* BUTTON */
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:orange;
+    color:white;
+    cursor:pointer;
+}
+
+/* 🎉 COURSES DESIGN (unchanged) */
+.kids-banner{
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+    padding:20px;
+    margin:20px auto;
+    width:85%;
+    border-radius:20px;
+    text-align:center;
+    font-weight:bold;
+    color:#333;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce{
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.courses-grid{
+    text-align:center;
+    margin-top:20px;
+}
+
+.course-card{
+    background:white;
+    color:black;
+    width:220px;
+    margin:15px;
+    display:inline-block;
+    border-radius:20px;
+    padding:15px;
+    box-shadow:0 5px 12px rgba(0,0,0,0.2);
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.course-card:hover{
+    transform:translateY(-10px) scale(1.05);
+    background:#fef3c7;
+}
+
+.course-card h3{
+    color:#ff6f61;
+}
+
+/* LEVELS */
+.levels{
+    text-align:center;
+    margin-top:20px;
+}
+
+.level{
+    background:white;
+    color:black;
+    width:260px;
+    margin:15px;
+    display:inline-block;
+    border-radius:20px;
+    padding:15px;
+    box-shadow:0 5px 12px rgba(0,0,0,0.2);
+    transition:0.3s;
+    vertical-align:top;
+}
+
+.level:hover{
+    transform:translateY(-10px) scale(1.05);
+    background:#fef3c7;
+}
+
+.level h3{
+    color:#1e3a8a;
+}
+
+.level ul{
+    text-align:left;
+}
+
+.level a{
+    display:inline-block;
+    margin-top:5px;
+    color:blue;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.final-test{
+    margin-top:30px;
+    background:linear-gradient(135deg,#facc15,#f97316);
+    padding:20px;
+    border-radius:20px;
+    color:white;
+    font-weight:bold;
+}
+
+.final-test a{
+    color:white;
+    font-size:18px;
+    text-decoration:none;
+}
+/* COURSES NEW DESIGN */
+.courses-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:22px;
+    margin-top:20px;
+}
+
+.course-card{
+    background: linear-gradient(145deg, #ffffff, #e9f5ff);
+    border-radius:22px;
+    padding:20px;
+    text-align:center;
+    transition:0.3s;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.course-card:hover{
+    transform:translateY(-10px) scale(1.03);
+    box-shadow:0 12px 25px rgba(74,163,255,0.25);
+}
+
+/* colorful glow effect */
+.course-card::before{
+    content:"";
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle, rgba(74,163,255,0.15), transparent 60%);
+    transform:rotate(25deg);
+}
+
+.icon{
+    font-size:50px;
+    margin-bottom:10px;
+    animation: float 2.5s infinite ease-in-out;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+.course-card h3{
+    margin:10px 0 5px;
+    color:#1f2a44;
+}
+
+.course-card p{
+    font-size:14px;
+    opacity:0.8;
+}
+
+.tag{
+    display:inline-block;
+    margin-top:10px;
+    padding:5px 12px;
+    font-size:12px;
+    border-radius:20px;
+    background:#4aa3ff;
+    color:white;
+}
