@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Courses - Easy Learning Center</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#4979c2;
+    color:rgb(11, 2, 62);
+}
+
+/* HEADER */
+.header{
+    background:rgb(206, 229, 248);
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.header a{
+    margin:0 10px;
+    text-decoration:none;
+    color:black;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    padding:20px;
+    color:rgb(13, 0, 60);
+
+}
+
+/* LEVELS */
+.levels{
+    text-align:center;
+    padding:20px;
+}
+
+.level{
+    background:white;
+    color:black;
+    width:260px;
+    margin:15px;
+    display:inline-block;
+    border-radius:20px;
+    padding:15px;
+    box-shadow:0 5px 12px rgba(0,0,0,0.2);
+    transition:0.3s;
+    vertical-align:top;
+}
+
+.level:hover{
+    transform:scale(1.05);
+    background:#fef3c7;
+}
+
+.level h3{
+    color:#1e3a8a;
+}
+
+/* FINAL TEST */
+.final{
+    background:linear-gradient(135deg,#8dbaec,#0286bf);
+    margin:30px auto;
+    padding:20px;
+    width:80%;
+    border-radius:20px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.final a{
+    color:white;
+    font-size:18px;
+    text-decoration:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h3>📚 Easy Learning Center</h3>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+    </div>
+</div>
+
+<!-- TITLE -->
+<div class="title">
+    <h1>📚 English Courses</h1>
+    <p>Learn step by step with videos, lessons and quizzes</p>
+</div>
+
+<!-- LEVELS -->
+<div class="levels">
+
+    <!-- LEVEL 1 -->
+    <div class="level">
+        <h3>⭐ Level 1</h3>
+        <p>Basic English</p>
+
+        <p>📖 Hello, School Things</p>
+
+        <a href="https://youtu.be/LrURT6Zqs8U?si=jxh1TCM3W7_bO334" target="_blank">
+        🎥 Watch Video
+        </a><br>
+
+        <a href="https://docs.google.com/document/d/1m0YgDHYl_npomEroskPNYqhmTq0MvEcUHFafguomXLo/edit?usp=sharing" target="_blank">
+        ❓ Quiz
+        </a>
+    </div>
+
+    <!-- LEVEL 2 -->
+    <div class="level">
+        <h3>⭐⭐ Level 2</h3>
+        <p>Simple Sentences</p>
+
+        <p>📖 MY / YOUR + TOYS</p>
+
+        <a href="https://youtu.be/zpyh0-golzw?si=dtkGpYkLY7hgaswv" target="_blank">
+        🎥 Watch Video
+        </a><br>
+
+        <a href="https://docs.google.com/document/d/1x8i4y2kVpnwFTz5715-2VjH-FDk25psJevUrhfAmg90/edit?usp=sharing" target="_blank">
+        ❓ Quiz
+        </a>
+    </div>
+
+    <!-- LEVEL 3 -->
+    <div class="level">
+        <h3>⭐⭐⭐ Level 3</h3>
+        <p>Intermediate English</p>
+
+        <p>📖 MY BODY + THIS IS / THESE ARE</p>
+
+        <a href="https://youtu.be/W18SxffiQuY?si=A6jIMD-7rZzxjxu4" target="_blank">
+        🎥 Watch Video
+        </a><br>
+
+        <a href="https://docs.google.com/document/d/17arRKlQKeg7CC0o2-rTAtnihbxNAJiDMyR5LTUSDf6Y/edit?usp=sharing" target="_blank">
+        ❓ Quiz
+        </a>
+    </div>
+
+</div>
+
+<!-- FINAL TEST -->
+<div class="final">
+    🏆 Final Test - Check your English level
+
+    <br><br>
+
+    <a href="https://docs.google.com/document/d/1gNwX-KI_2m2y_NLcZJ3JbENVpnypfKNN0Zid97zi9uA/edit?usp=sharing" target="_blank">
+    Start Final Exam
+    </a>
+</div>
+
+</body>
+</html>
