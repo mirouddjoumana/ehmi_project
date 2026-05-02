@@ -4,13 +4,12 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const path = require("path");
 
-
 const app = express();
-
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname));
 
-// اتصال MySQL
+// MySQL connection for auth
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -19,50 +18,44 @@ const db = mysql.createConnection({
 });
 
 db.connect(err => {
-  if(err) console.log(err);
-  else console.log("MySQL Connected");
+  if(err) console.log("MySQL Auth Error:", err);
+  else console.log("MySQL Auth Connected");
 });
 
-// تسجيل
+// Register new user
 app.post("/register", async (req, res) => {
-  const {username, email, password} = req.body;
-
+  const { username, email, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
-
+  
   db.query(
     "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
     [username, email, hashedPassword],
     (err, result) => {
-      if(err) return res.send("Error");
-      res.send("User registered");
+      if(err) return res.status(500).json({ error: "Registration failed" });
+      res.json({ message: "User registered" });
     }
   );
 });
 
-// تسجيل دخول
-// تسجيل دخول - Login route
+// Login user
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
-
+  
   db.query(
     "SELECT * FROM users WHERE email = ?",
     [email],
     async (err, results) => {
       if(err) return res.status(500).json({ error: "Login error" });
+      if(results.length === 0) return res.status(404).json({ error: "User not found" });
       
-      if(results.length === 0){
-        return res.status(404).json({ error: "User not found" });
-      }
-
       const user = results[0];
       const match = await bcrypt.compare(password, user.password);
-
-      if(match){
-        // Return userId and username for frontend to use
+      
+      if(match) {
         res.json({ 
           message: "Login successful", 
-          userId: user.id,        // This is important for linking with app.js
-          username: user.username // Optional: show welcome message
+          userId: user.id,
+          username: user.username 
         });
       } else {
         res.status(401).json({ error: "Wrong password" });
@@ -70,71 +63,13 @@ app.post("/login", (req, res) => {
     }
   );
 });
-app.use(cors());
-app.use(express.json());
-app.use(express.static(__dirname));
+
+// Serve frontend files
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
-//AUTH
-// REGISTER
-app.post("/register", async (req, res) => {
-  try {
-    const { username, email, password } = req.body;
-    
-    if (!username || !email || !password) {
-      return res.status(400).json({ error: "All fields required" });
-    }
 
-    const existingUser = await User.findOne({ where: { email } });
-    if (existingUser) {
-      return res.status(400).json({ error: "Email already exists" });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = await User.create({
-      username,
-      email,
-      password: hashedPassword
-    });
-
-    res.status(201).json({ message: "User registered", userId: user.id });
-
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// LOGIN
-app.post("/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      return res.status(400).json({ error: "Email and password required" });
-    }
-
-    const user = await User.findOne({ where: { email } });
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
-
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) {
-      return res.status(401).json({ error: "Wrong password" });
-    }
-
-    res.json({ 
-      message: "Login successful", 
-      userId: user.id,
-      username: user.username 
-    });
-
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+// Start auth server
 app.listen(5000, () => {
-  console.log("Server running on port 5000");
+  console.log("Auth Server running on http://localhost:5000");
 });
