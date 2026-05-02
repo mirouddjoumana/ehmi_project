@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -5,51 +7,18 @@
     <link rel="stylesheet" href="auth.css">
 </head>
 <body>
-
 <div class="auth-container">
     <div class="auth-box">
         <h2>Login</h2>
-
         <input id="email" placeholder="Email">
         <input id="password" type="password" placeholder="Password">
-
         <button onclick="login()">Login</button>
-
-        <p>Don't have an account? 
-            <a href="register.html">Register</a>
-        </p>
+        <p>Don't have an account? <a href="register.html">Register</a></p>
     </div>
 </div>
 <script>
-
-function register(){
-   fetch("http://localhost:5000/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            username: document.getElementById("username").value,
-            email: document.getElementById("email").value,
-            password: document.getElementById("password").value
-        })
-    })
-    .then(res => res.json())  
-    .then(data => {
-        if(data.message) {
-            alert("good " + data.message);
-            window.location.href = "login.html";
-        } else {
-            alert("bad " + (data.error || "Error"));
-        }
-    })
-    .catch(err => {
-        console.log(err);
-        alert(" Connection error");
-    });
-}
-
-
+// Handle user login
 function login(){
-
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     
@@ -58,20 +27,14 @@ function login(){
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
     })
-    .then(res => res.json())  // Parse JSON response
+    .then(res => res.json())
     .then(data => {
-
         if(data.message && data.message.includes("successful")) {
-            // Save userId and username in localStorage for later use
             localStorage.setItem("userId", data.userId);
             localStorage.setItem("username", data.username);
-
             alert("Welcome, " + data.username + "!");
-            
-
             window.location.href = "index.html";
         } else {
-
             alert("Error: " + (data.error || "Login failed"));
         }
     })
@@ -82,3 +45,4 @@ function login(){
 }
 </script>
 </body>
+</html>
