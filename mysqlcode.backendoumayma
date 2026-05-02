@@ -1,0 +1,19 @@
+1. إنشاء قاعدة البيانات
+CREATE DATABASE authdb;
+🟢 2. استعمالها
+USE authdb;
+🟢 3. إنشاء جدول users
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+🟢 4. (اختياري) تجربة إدخال يدوي
+
+⚠️ ملاحظة: هذا فقط للتجربة (بدون bcrypt)
+
+INSERT INTO users (username, email, password)
+VALUES ("testuser", "test@gmail.com", "123456");
+#اهم حاجة ارجعو للجايسون فايل تاعي ولازم تحطو الباسور تعكم فخانة الباسور )باسورد ماي ايس كوال تعكم(
+
