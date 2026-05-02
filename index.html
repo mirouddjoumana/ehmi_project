@@ -1,133 +1,189 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Easy Learning Center</title>
-
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="home.css">
-
-<script>
-function scrollToSection(id){
-    document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-</script>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#cee5f8;color:#010c13}
+.header{background:#cee5f8;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;box-shadow:0 2px 10px rgba(0,0,0,0.08);z-index:1000}
+.header a{margin:0 8px;text-decoration:none;color:#1f2a44;padding:8px 14px;border-radius:20px;transition:0.3s;font-weight:bold}
+.header a:hover{background:#7daee0;color:white}
+.hero{display:flex;flex-wrap:wrap;justify-content:space-around;align-items:center;padding:60px 20px;background:#1c6cbb;color:white}
+.hero img{width:300px;border-radius:20px;margin-top:20px;box-shadow:0 10px 25px rgba(0,0,0,0.2)}
+.hero h1{font-size:36px}
+.section{margin:40px auto;padding:30px;width:90%;max-width:1000px;background:white;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.08)}
+.section h2{text-align:center;margin-bottom:20px;color:#4aa3ff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.card{background:#f5fbff;border-radius:18px;overflow:hidden;text-decoration:none;color:#1f2a44;transition:0.3s;box-shadow:0 3px 10px rgba(0,0,0,0.06)}
+.card:hover{transform:translateY(-6px)}
+.card img{width:100%;height:140px;object-fit:cover}
+.card p{padding:10px;font-weight:bold;text-align:center}
+.course-card{background:linear-gradient(135deg,#0565b3,#7ebefa);padding:25px;border-radius:20px;text-align:center;transition:0.3s;box-shadow:0 5px 15px rgba(0,0,0,0.05)}
+.course-card:hover{transform:scale(1.07)}
+.course-icon{font-size:45px;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.embed-box{text-align:center;padding:20px}
+iframe{width:100%;height:400px;border:none;border-radius:10px}
+</style>
 </head>
-
 <body>
 
-<!-- HEADER -->
 <div class="header">
-    <img src="images/Logo - 1.png" width="90">
-
+    <img src="images/Logo - 1.png" width="120">
     <div>
-        <a onclick="scrollToSection('home')">Home</a>
-        <a onclick="scrollToSection('platform')">Platform</a>
-        <a onclick="scrollToSection('social')">Social</a>
+        <a href="#home">Home</a>
+        <a href="#platform">Platform</a>
+        <a href="#courses">Courses</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#games">Games</a>
+        <a href="#social">Social</a>
     </div>
-
     <div>
-       <a href="login.html">Login</a>
-<button class="register" onclick="window.location.href='register.html'">sign up</button>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
     </div>
 </div>
 
-<!-- HERO -->
 <div class="hero" id="home">
     <div>
-        <h1>Fun Learning for Kids 🎓</h1>
-        <p>Learn English in a fun and easy way.</p>
-        <button class="btn" onclick="scrollToSection('platform')">Start Now</button>
+        <h2>🎓 Fun Learning for Kids</h2>
+        <p>Enjoy learning English through fun activities, games, and interactive lessons! 📚✨</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350">
+</div>
+
+<!-- Dynamic Levels Container -->
+<div class="section" id="dynamic-levels">
+    <h2>📚 Available Levels</h2>
+    <div id="levels-container" class="grid">
+        <p>Loading levels...</p>
     </div>
 </div>
 
-
-<!-- PLATFORM -->
 <div class="section" id="platform">
-    <h2>Platform</h2>
-
-    <a href="#courses" class="card">
-        <img src="https://th.bing.com/th/id/OIP.8jAOorhisb4_-nxn6Y3F_gHaHa">
-        <p>Courses 📚</p>
-    </a>
-
-    <a href="#quiz" class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/3405/3405800.png">
-        <p>Quiz ❓</p>
-    </a>
-
-    <a href="https://wordwall.net/en-us/community/games" target="_blank" class="card">
-        <img src="https://i.pinimg.com/736x/7d/05/3b/7d053b45097250f5d76da0621297114e.jpg">
-        <p>Games 🎮</p>
-    </a>
+    <h2>📚 Platform</h2>
+    <p style="text-align:center;font-size:18px">
+        🌈 Welcome to Fun English World!<br>
+        Learn English with videos, quizzes and games 🎮📖✨
+    </p>
+    <div class="grid">
+        <a href="courses.html" class="card">
+            <img src="https://via.placeholder.com/200x140?text=Courses">
+            <p>📚 Courses</p>
+        </a>
+        <a href="#quiz" class="card">
+            <img src="https://via.placeholder.com/200x140?text=Quiz">
+            <p>❓ Quiz</p>
+        </a>
+        <a href="#games" class="card">
+            <img src="https://via.placeholder.com/200x140?text=Games">
+            <p>🎮 Games</p>
+        </a>
+    </div>
 </div>
 
-<!-- COURSES -->
 <div class="section" id="courses">
-    <h2>📚 Courses</h2>
-    <p>Coming soon...</p>
+    <h2>📚 Courses for Kids</h2>
+    <div class="courses-container">
+        <div class="course-card"><div class="icon">📖</div><h3>Grammar Adventure</h3><p>Learn grammar through fun stories ✨</p><span class="tag">Beginner</span></div>
+        <div class="course-card"><div class="icon">🧠</div><h3>Word Explorer</h3><p>Discover new words every day 🌟</p><span class="tag">Vocabulary</span></div>
+        <div class="course-card"><div class="icon">🗣️</div><h3>Speak Fun</h3><p>Practice speaking with confidence 🎤</p><span class="tag">Speaking</span></div>
+        <div class="course-card"><div class="icon">🎧</div><h3>Listening World</h3><p>Train your ears with fun audio 🎧</p><span class="tag">Listening</span></div>
+        <div class="course-card"><div class="icon">✍️</div><h3>Writing Magic</h3><p>Write sentences like magic ✨</p><span class="tag">Writing</span></div>
+        <div class="course-card"><div class="icon">🏆</div><h3>Level Up</h3><p>Go from beginner to expert 🚀</p><span class="tag">Progress</span></div>
+    </div>
 </div>
 
-<!-- QUIZ -->
 <div class="section" id="quiz">
-    <h2>❓ Quiz</h2>
-
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe63QjQfp0pqltpyb0TI_lQxIzbrUP8RIZYDVYWb87J8c8LVg/viewform?embedded=true"
-    width="100%" height="600"></iframe>
-
+    <h2>❓ Quiz - Level Test</h2>
+    <p style="text-align:center">Find your English level 🎯</p>
+    <div class="embed-box">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe63QjQfp0pqltpyb0TI_lQxIzbrUP8RIZYDVYWb87J8c8LVg/viewform?usp=preview"></iframe>
+    </div>
 </div>
 
-<!-- SOCIAL -->
+<div class="section" id="games">
+    <h2>🎮 Games</h2>
+    <p style="text-align:center">Learn while playing 😄</p>
+    <div class="grid">
+        <a class="card" href="https://wordwall.net/fr/community" target="_blank">
+            <img src="https://via.placeholder.com/200x140?text=Wordwall">
+            <p>Wordwall Game</p>
+        </a>
+    </div>
+</div>
+
 <div class="section" id="social">
-    <h2>Social Media</h2>
-
-    <p>
-        📘 Facebook:
-        <a href="https://facebook.com" target="_blank">
-        International english teaching center
+    <h2>📱 Social Media</h2>
+    <div class="grid">
+        <a class="card" href="https://www.facebook.com/easylearningdzcenter" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" style="height:140px;object-fit:contain;padding:20px;background:white">
+            <p>📘 Facebook Page</p>
         </a>
-    </p>
-
-    <p>
-        📸 Instagram:
-        <a href="https://instagram.com" target="_blank">
-        easy.learning.dz.center
+        <a class="card" href="https://www.instagram.com/easy.learning.dz.center?igsh=cjl6ODZubzQyYzZx" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" style="height:140px;object-fit:contain;padding:20px;background:white">
+            <p>📸 Instagram Page</p>
         </a>
-    </p>
+    </div>
 </div>
 
-<!-- JAVASCRIPT (BACKEND CONNECTION) -->
 <script>
-function register(){
-    fetch("http://localhost:3000/register"), {
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({
-            username: document.getElementById("username").value,
-            email: document.getElementById("email").value,
-            password: document.getElementById("password").value
-        })
-    })
-    .then(res => res.text())
-    .then(data => alert(data))
-    .catch(err => console.log(err));
+// Load levels from backend and display them
+async function loadLevels() {
+    try {
+        const response = await fetch("http://localhost:3000/levels");
+        const levels = await response.json();
+        const container = document.getElementById("levels-container");
+        container.innerHTML = "";
+        levels.forEach(level => {
+            const levelCard = document.createElement("div");
+            levelCard.className = "card";
+            levelCard.innerHTML = `
+                <h3>⭐ ${level.title}</h3>
+                <button onclick="loadLessons(${level.id})">View Lessons</button>
+            `;
+            container.appendChild(levelCard);
+        });
+    } catch (error) {
+        console.log("Error loading levels:", error);
+        const container = document.getElementById("levels-container");
+        container.innerHTML = "<p>Failed to load levels. Please try again later.</p>";
+    }
 }
 
-function login(){
- fetch("http://localhost:3000/login", {
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({
-            email: document.getElementById("email").value,
-            password: document.getElementById("password").value
-        })
-    })
-    .then(res => res.text())
-    .then(data => alert(data))
-    .catch(err => console.log(err));
+// Load and display lessons for a specific level
+async function loadLessons(levelId) {
+    try {
+        const response = await fetch(`http://localhost:3000/levels/${levelId}/lessons`);
+        const lessons = await response.json();
+        const lessonsContainer = document.createElement("div");
+        lessonsContainer.className = "section";
+        lessonsContainer.innerHTML = `<h3>📖 Lessons for Level ${levelId}</h3>`;
+        if (lessons.length === 0) {
+            lessonsContainer.innerHTML += "<p>No lessons available yet.</p>";
+        } else {
+            lessons.forEach(lesson => {
+                const lessonCard = document.createElement("div");
+                lessonCard.className = "card";
+                lessonCard.innerHTML = `
+                    <h4>${lesson.title}</h4>
+                    ${lesson.video_url ? `<a href="${lesson.video_url}" target="_blank">🎥 Watch</a><br>` : ''}
+                    ${lesson.pdf_url ? `<a href="${lesson.pdf_url}" target="_blank">📄 PDF</a>` : ''}
+                `;
+                lessonsContainer.appendChild(lessonCard);
+            });
+        }
+        const levelsSection = document.getElementById("dynamic-levels");
+        levelsSection.parentNode.insertBefore(lessonsContainer, levelsSection.nextSibling);
+    } catch (error) {
+        console.log("Error loading lessons:", error);
+        alert("Failed to load lessons. Please try again.");
+    }
 }
+
+// Run loadLevels when page is ready
+document.addEventListener("DOMContentLoaded", loadLevels);
 </script>
-
 </body>
 </html>
