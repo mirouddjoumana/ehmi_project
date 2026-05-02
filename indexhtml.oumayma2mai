@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Easy Learning Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* نفس CSS تاعك (ما بدلتوش) */
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#cee5f8;
+    color:#010c13;
+}
+
+.header{
+    background:#cee5f8;
+    padding:12px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+}
+
+.header a{
+    margin:0 8px;
+    text-decoration:none;
+    color:#1f2a44;
+    padding:8px 14px;
+    border-radius:20px;
+    transition:0.3s;
+    font-weight:bold;
+}
+
+.header a:hover{
+    background:#7daee0;
+    color:white;
+}
+
+.hero{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding:60px 20px;
+    background:#1c6cbb;
+    color:white;
+}
+
+.section{
+    margin:40px auto;
+    padding:30px;
+    width:90%;
+    max-width:1000px;
+    background:white;
+    border-radius:15px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#f5fbff;
+    border-radius:18px;
+    text-decoration:none;
+    color:#1f2a44;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <img src="images/Logo - 1.png" width="120">
+
+    <div>
+        <a href="#home">Home</a>
+        <a href="#platform">Platform</a>
+        <a href="#courses">Courses</a>
+        <a href="#quiz">Quiz</a>
+    </div>
+
+    <!-- 👇 هذا تبدل -->
+    <div id="authButtons">
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="home">
+    <div>
+        <h2>🎓 Fun Learning for Kids</h2>
+        <p>Learn English in a fun way 📚✨</p>
+    </div>
+</div>
+
+<!-- PLATFORM -->
+<div class="section" id="platform">
+    <h2>📚 Platform</h2>
+
+    <div class="grid">
+        <a href="#" onclick="goToCourses()" class="card">
+            <p>📚 Courses</p>
+        </a>
+
+        <a href="#quiz" class="card">
+            <p>❓ Quiz</p>
+        </a>
+    </div>
+</div>
+
+<!-- COURSES PREVIEW -->
+<div class="section" id="courses">
+    <h2>📚 Courses</h2>
+    <p>Click to explore levels 🚀</p>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="quiz">
+    <h2>❓ Quiz</h2>
+</div>
+
+<!-- 🔥 JAVASCRIPT (IMPORTANT) -->
+<script>
+
+// ✅ إذا المستخدم راهو logged
+if(localStorage.getItem("user")){
+    document.getElementById("authButtons").innerHTML = `
+        <button onclick="logout()">Logout</button>
+    `;
+}
+
+// 🔐 حماية الدخول للكورسات
+function goToCourses(){
+    if(localStorage.getItem("user")){
+        window.location.href = "courses.html";
+    } else {
+        alert("You must login first!");
+        window.location.href = "login.html";
+    }
+}
+
+// 🚪 logout
+function logout(){
+    localStorage.removeItem("user");
+    window.location.reload();
+}
+
+</script>
+
+</body>
+</html>
