@@ -258,3 +258,28 @@ app.listen(3000, async () => {
   await sequelize.sync({ alter: true });
   console.log(" Server running on http://localhost:3000");
 });
+async function seedLevels() {
+    try {
+        const defaultLevels = [
+            "Family and Friends 1 Class Book 2nd full (lev1)",
+            "Family and Friends 1 Class Book 2nd full (lev2)",
+            "Family and Friends 1 Class Book 2nd full (lev3)"
+        ];
+        
+        for (const title of defaultLevels) {
+            // Check if level already exists
+            const existing = await Level.findOne({ where: { title } });
+            
+            if (!existing) {
+                // Create new level if not found
+                await Level.create({ title });
+                console.log("Created level:", title);
+            }
+        }
+        console.log("Levels seeding completed");
+    } catch (error) {
+        console.log("Error seeding levels:", error);
+    }
+}
+
+seedLevels();
