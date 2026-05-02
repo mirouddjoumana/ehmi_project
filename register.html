@@ -1,21 +1,48 @@
-<body>
-
-<div class="auth-container">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+<div class="auth-container">
     <div class="auth-box">
         <h2>Create Account</h2>
-
         <input id="username" placeholder="Username">
         <input id="email" placeholder="Email">
         <input id="password" type="password" placeholder="Password">
-
         <button onclick="register()">Register</button>
-
-        <p>Already have an account? 
-            <a href="login.html">Login</a>
-        </p>
+        <p>Already have an account? <a href="login.html">Login</a></p>
     </div>
 </div>
-
+<script>
+// Handle user registration
+function register(){
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    
+    fetch("http://localhost:5000/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.message) {
+            alert("Success: " + data.message);
+            window.location.href = "login.html";
+        } else {
+            alert("Error: " + (data.error || "Registration failed"));
+        }
+    })
+    .catch(err => {
+        console.log("Connection error:", err);
+        alert("Cannot connect to server. Please try again.");
+    });
+}
+</script>
 </body>
+</html>
