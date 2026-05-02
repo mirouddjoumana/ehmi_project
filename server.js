@@ -71,6 +71,68 @@ app.use(express.static(__dirname));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
+//AUTH
+const bcrypt = require("bcrypt");
+const User = require("./models/User");
+
+// REGISTER
+app.post("/register", async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    
+    if (!username || !email || !password) {
+      return res.status(400).json({ error: "All fields required" });
+    }
+
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: "Email already exists" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      username,
+      email,
+      password: hashedPassword
+    });
+
+    res.status(201).json({ message: "User registered", userId: user.id });
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// LOGIN
+app.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: "Email and password required" });
+    }
+
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.status(401).json({ error: "Wrong password" });
+    }
+
+    res.json({ 
+      message: "Login successful", 
+      userId: user.id,
+      username: user.username 
+    });
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
