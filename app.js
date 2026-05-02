@@ -9,6 +9,7 @@ const Lesson = require("./models/Lesson");
 const Progress = require("./models/Progress");
 const Quiz = require("./models/Quiz");
 const Result = require("./models/Result");
+const User = require("./models/User");
 
 app.use(express.json());
 app.use(cors());
@@ -19,6 +20,12 @@ Lesson.belongsTo(Level, { foreignKey: "level_id" });
 
 Level.hasMany(Quiz, { foreignKey: "level_id" });
 Quiz.belongsTo(Level, { foreignKey: "level_id" });
+
+User.hasMany(Progress, { foreignKey: "user_id" });
+Progress.belongsTo(User, { foreignKey: "user_id" });
+
+User.hasMany(Result, { foreignKey: "user_id" });
+Result.belongsTo(User, { foreignKey: "user_id" });
 
 // Test route
 app.get("/", (req, res) => {
