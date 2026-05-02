@@ -339,18 +339,45 @@ async function loadLevels() {
 }
 
 
-async function loadLessons(levelId) {
-    try {
-        const response = await fetch(`http://localhost:3000/levels/${levelId}/lessons`);
-        const lessons = await response.json();
-        console.log(" Lessons:", lessons);
+// 🟢 الصق هذا الكود الجديد في نفس مكان الكود القديم الذي حذفته:
 
-    } catch (error) {
-        console.log(" Error loading lessons:", error);
+async function loadLessons(levelId) {
+    // Fetch lessons for this level from backend API
+    const response = await fetch(`http://localhost:3000/levels/${levelId}/lessons`);
+    const lessons = await response.json();
+    
+    // Create a container to display lessons on the page
+    const lessonsContainer = document.createElement("div");
+    lessonsContainer.className = "section";
+    lessonsContainer.innerHTML = `<h3>📖 Lessons for Level ${levelId}</h3>`;
+    
+    // Show message if no lessons found
+    if (lessons.length === 0) {
+        lessonsContainer.innerHTML += "<p>No lessons available yet.</p>";
+    } else {
+        // Loop through each lesson and create a card
+        lessons.forEach(lesson => {
+            const lessonCard = document.createElement("div");
+            lessonCard.className = "card";
+            lessonCard.innerHTML = `
+                <h4>${lesson.title}</h4>
+                ${lesson.video_url ? `<a href="${lesson.video_url}" target="_blank"> Watch</a><br>` : ''}
+                ${lesson.pdf_url ? `<a href="${lesson.pdf_url}" target="_blank">📄 PDF</a>` : ''}
+            `;
+            lessonsContainer.appendChild(lessonCard);
+        });
     }
+    
+    // Insert the lessons section after the levels container
+    const levelsSection = document.getElementById("dynamic-levels");
+    levelsSection.parentNode.insertBefore(lessonsContainer, levelsSection.nextSibling);
+    
+} catch (error) {
+    // Handle errors gracefully
+    console.log("Error loading lessons:", error);
+    alert("Failed to load lessons. Please try again.");
 }
 
-document.addEventListener("DOMContentLoaded", loadLevels);
 </script>
 </body>
 </html>
