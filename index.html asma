@@ -5,7 +5,9 @@
 <title>Easy Learning Center</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#cee5f8;color:#010c13}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;background:#cee5f8;color:#010c13}
 .header{background:#cee5f8;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;box-shadow:0 2px 10px rgba(0,0,0,0.08);z-index:1000}
 .header a{margin:0 8px;text-decoration:none;color:#1f2a44;padding:8px 14px;border-radius:20px;transition:0.3s;font-weight:bold}
 .header a:hover{background:#7daee0;color:white}
