@@ -20,5 +20,60 @@
         </p>
     </div>
 </div>
+<script>
+// ✅ دالة التسجيل - توجه للبورت 5000
+function register(){
+   fetch("http://localhost:5000/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        })
+    })
+    .then(res => res.json())  // ✅ نستخدم .json() لأن السيرفر يرجع JSON
+    .then(data => {
+        if(data.message) {
+            alert("✅ " + data.message);
+            window.location.href = "login.html";
+        } else {
+            alert("❌ " + (data.error || "Error"));
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        alert("❌ Connection error");
+    });
+}
 
+// ✅ دالة الدخول - توجه للبورت 5000
+function login(){
+ fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.message && data.message.includes("successful")) {
+            // ✅ حفظ بيانات المستخدم للاستخدام لاحقاً
+            localStorage.setItem("userId", data.userId);
+            localStorage.setItem("username", data.username);
+            
+            alert("🎉 Welcome, " + data.username + "!");
+            window.location.href = "courses.html";  // 🔀 توجه لصفحة الدروس
+        } else {
+            alert("❌ " + (data.error || "Login failed"));
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        alert("❌ Connection error");
+    });
+}
+</script>
 </body>
