@@ -300,6 +300,40 @@ iframe{
         </a>
     </div>
 </div>
+<script>
+async function loadLevels() {
+    try {
+        const response = await fetch("http://localhost:3000/levels");
+        const levels = await response.json();
 
+        
+        levels.forEach(level => {
+            const levelDiv = document.createElement("div");
+            levelDiv.className = "level";
+            levelDiv.innerHTML = `
+                <h3> ${level.title}</h3>
+                <button onclick="loadLessons(${level.id})">View Lessons</button>
+            `;
+            container.appendChild(levelDiv);
+        });
+    } catch (error) {
+        console.log(" Error loading levels:", error);
+    }
+}
+
+
+async function loadLessons(levelId) {
+    try {
+        const response = await fetch(`http://localhost:3000/levels/${levelId}/lessons`);
+        const lessons = await response.json();
+        console.log(" Lessons:", lessons);
+
+    } catch (error) {
+        console.log(" Error loading lessons:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadLevels);
+</script>
 </body>
 </html>
