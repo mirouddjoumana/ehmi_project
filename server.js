@@ -72,9 +72,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 //AUTH
-const bcrypt = require("bcrypt");
-const User = require("./models/User");
-
 // REGISTER
 app.post("/register", async (req, res) => {
   try {
