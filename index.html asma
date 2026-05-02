@@ -169,11 +169,10 @@ iframe{
     </div>
 
     <div>
-        <a href="#">Login</a>
-        <a href="#">Register</a>
+           <a href="login.html">Login</a>
+           <a href="register.html">Register</a>
     </div>
 </div>
-
 <!-- HERO -->
 <div class="hero" id="home">
     <div>
@@ -183,7 +182,12 @@ iframe{
 
     <img src="https://images.unsplash.com/photo-1588072432836-e10032774350">
 </div>
-
+<div class="section" id="dynamic-levels">
+    <h2> Available Levels</h2>
+    <div id="levels-container" class="grid">
+        <p>Loading levels...</p>
+    </div>
+</div>
 <!-- PLATFORM FIRST -->
 <div class="section" id="platform">
     <h2>📚 Platform</h2>
@@ -300,24 +304,37 @@ iframe{
         </a>
     </div>
 </div>
+
 <script>
 async function loadLevels() {
     try {
+        // Fetch levels from backend API on port 3000
         const response = await fetch("http://localhost:3000/levels");
         const levels = await response.json();
-
         
+        // Get the container element from HTML
+        const container = document.getElementById("levels-container");
+        
+        // Clear the "Loading..." message
+        container.innerHTML = "";
+        
+        // Loop through each level and create a card
         levels.forEach(level => {
-            const levelDiv = document.createElement("div");
-            levelDiv.className = "level";
-            levelDiv.innerHTML = `
+            const levelCard = document.createElement("div");
+            levelCard.className = "card";  // Use existing CSS class
+            
+            levelCard.innerHTML = `
                 <h3> ${level.title}</h3>
                 <button onclick="loadLessons(${level.id})">View Lessons</button>
             `;
-            container.appendChild(levelDiv);
+            
+            container.appendChild(levelCard);
         });
+        
     } catch (error) {
-        console.log(" Error loading levels:", error);
+        console.log("Error loading levels:", error);
+        const container = document.getElementById("levels-container");
+        container.innerHTML = "<p>Failed to load levels. Please try again later.</p>";
     }
 }
 
