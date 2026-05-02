@@ -100,7 +100,7 @@ function scrollToSection(id){
 <!-- JAVASCRIPT (BACKEND CONNECTION) -->
 <script>
 function register(){
-    fetch("http://localhost:3000/register", {
+   fetch("http://localhost:5000/register", {
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body: JSON.stringify({
@@ -115,7 +115,7 @@ function register(){
 }
 
 function login(){
-    fetch("http://localhost:3000/login", {
+ fetch("http://localhost:5000/login", {
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body: JSON.stringify({
