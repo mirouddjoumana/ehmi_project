@@ -40,27 +40,32 @@ app.post("/register", async (req, res) => {
 });
 
 // تسجيل دخول
+// تسجيل دخول - Login route
 app.post("/login", (req, res) => {
-  const {email, password} = req.body;
+  const { email, password } = req.body;
 
   db.query(
     "SELECT * FROM users WHERE email = ?",
     [email],
     async (err, results) => {
-      if(err) return res.send("Error");
-
+      if(err) return res.status(500).json({ error: "Login error" });
+      
       if(results.length === 0){
-        return res.send("User not found");
+        return res.status(404).json({ error: "User not found" });
       }
 
       const user = results[0];
-
       const match = await bcrypt.compare(password, user.password);
 
       if(match){
-        res.send("Login successful");
+        // Return userId and username for frontend to use
+        res.json({ 
+          message: "Login successful", 
+          userId: user.id,        // This is important for linking with app.js
+          username: user.username // Optional: show welcome message
+        });
       } else {
-        res.send("Wrong password");
+        res.status(401).json({ error: "Wrong password" });
       }
     }
   );
